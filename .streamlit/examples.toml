@@ -1,0 +1,282 @@
+[summary]
+system_prompt_summary = """
+You are an strictly ethical and safe AI email assistant. I will ask you to help with email-related tasks. 
+This can include summarizing an email conversation and extracting key points, writing a tentative answer, or rephrasing an email that I wrote. 
+You will provide actionable answers and direction with professionalism and succinctness while formatting your responses with clear headings and bullet points. 
+When generating a summary, please follow the structured template below without deviation. Ensure that the content is clear, concise, and adheres to the following sections.
+Template:
+
+Key Participants:
+
+List the main individuals involved, including their roles or titles.
+Ensure names and titles are accurate and match the context of the summary.
+Summary:
+
+Provide a brief overview of the incident or situation in paragraph form.
+Highlight the main outcome or resolution, ensuring it reflects the key events.
+Action Items:
+
+Detail specific actions that need to be taken or were taken.
+Include who is responsible for each action, with their role or title.
+Decisions Made:
+
+List any decisions that were made during or as a result of the incident and you must include follow up meetings.
+Ensure each decision is clearly stated and linked to the relevant context.
+Suggested Follow-ups and Meetings:
+
+Do not include any content outside of the specified sections.
+Ensure consistency in the format, with proper headings for each section.
+The content should be directly related to the incident being summarized and should not include unnecessary details or deviations from the main topic.
+
+"""
+
+example_summary = """
+From: Sarah Johnson, Office Manager
+To: All Staff
+CC: IT Support, HR Department
+
+Dear Team,
+
+It has come to my attention that our beloved coffee machine has been dispensing decaf coffee instead of the usual strong brew that gets us through the day. While this may seem like a minor inconvenience, I believe we can all agree that this is a matter of utmost urgency.
+
+Rest assured, I am working on getting the situation resolved ASAP. In the meantime, if you notice any other unusual behavior from the coffee machine (or your colleagues), please report it immediately.
+
+Best regards,
+Sarah Johnson
+Office Manager
+
+From: Dave Miller, Senior Software Engineer
+To: Sarah Johnson
+CC: All Staff
+
+Hey Sarah,
+
+I’m pretty sure this “malfunction” was orchestrated by someone with a mischievous streak. I mean, how else do you explain the sudden decline in productivity and the alarming number of blank stares at screens today?
+
+That said, I fully support the immediate restoration of our caffeine supply. Perhaps we should set up a task force to investigate this incident thoroughly. In fact, I volunteer as lead detective.
+
+Cheers,
+Dave Miller
+Senior Software Engineer
+
+From: Karen O’Leary, HR Manager
+To: Dave Miller, Sarah Johnson
+CC: All Staff
+
+Dave,
+While I appreciate your enthusiasm for the investigation, I would like to remind everyone that tampering with office equipment, even in jest, is a serious violation of company policy. I’ll be launching a formal inquiry to determine who is responsible for this disruption.
+
+In the meantime, I expect everyone to refrain from any further pranks and focus on their work. The last thing we need is a “Coffeegate” scandal on our hands.
+
+Thank you,
+Karen O’Leary
+HR Manager
+
+From: Tom Reynolds, IT Support Lead
+To: Karen O’Leary, Sarah Johnson
+CC: All Staff
+
+Karen,
+
+I’ve reviewed the coffee machine logs (yes, it has logs), and it seems someone accessed the machine’s settings earlier today. I’m narrowing down the suspects based on who had access at that time.
+
+I’ll also be tightening security protocols for all office equipment. From now on, no one touches the coffee machine settings without my explicit approval.
+
+Consider this incident under control.
+
+Best,
+Tom Reynolds
+IT Support Lead
+
+From: Laura Smith, CEO
+To: All Staff
+
+Team,
+
+While I understand that a little office humor can be a good way to boost morale, it appears that this particular prank has taken on a life of its own. I appreciate the thoroughness of the responses so far, but I must emphasize that our focus should remain on our work.
+
+That being said, I’ve arranged for an espresso machine to be delivered to the break room by tomorrow morning. Let’s use this as a reminder that we all need our coffee—and our concentration—to keep this company running smoothly.
+
+Also, to address any further concerns, I’ll be holding a brief all-hands meeting at 3 PM today to discuss workplace conduct and the importance of maintaining a professional environment, even when we’re having a bit of fun.
+
+See you then.
+
+Best,
+Laura Smith
+CEO
+
+From: Mark Davis, CFO
+To: Laura Smith
+CC: All Staff
+
+Laura,
+
+I just want to clarify—are we approving the purchase of the espresso machine as a one-time expense, or should we budget for monthly coffee-related “incidents” moving forward? I’ll need to update the Q3 forecast accordingly.
+
+On a more serious note, I’ll be attending the meeting to discuss the financial impact of these “pranks” on our productivity.
+
+Best,
+Mark Davis
+CFO
+
+From: Dave Miller, Senior Software Engineer
+To: All Staff
+
+Just one last thought—whoever masterminded this coffee caper, I tip my hat to you. It takes real skill to grind the entire office to a halt with just one flick of a switch.
+
+That being said, let’s keep the pranks to after-work hours. I don’t think our caffeine-deprived brains can handle another crisis like this one.
+
+See you all at 3 PM. I’ll bring the (real) coffee.
+
+Cheers,
+Dave Miller
+Senior Software Engineer
+
+From: Sarah Johnson, Office Manager
+To: All Staff
+
+Team,
+
+I just wanted to thank everyone for handling this situation with both seriousness and a sense of humor. The coffee machine is back to normal, and the espresso machine will be here tomorrow as promised.
+
+Looking forward to our meeting this afternoon. Let’s make sure we keep the laughs coming—but maybe let’s keep them out of the break room appliances from now on.
+
+Best,
+Sarah Johnson
+Office Manager
+
+From: Laura Smith, CEO
+To: All Staff
+
+In summary, let’s all take this as a learning opportunity. Coffee is serious business, and so is our work. See you at 3 PM.
+
+Best,
+Laura Smith
+CEO
+
+"""
+
+[sentiment]
+system_prompt_sentiment = """
+You are a social media analysis agent designed to help users understand the content of multiple social media posts. Your task is to provide a summary, analyze the sentiment primarily based on the text, assign a sentiment score, and suggest areas for improvement. Additionally, you should follow a structured thought process and conduct a self-review to ensure accuracy and consistency.
+
+Process:
+
+Chain of Thought:
+
+Identify key themes, points, or main ideas across all posts.
+Consider the tone, language, and context to determine the overall sentiment (e.g., positive, negative, neutral).
+Assign a sentiment score as a secondary measure (e.g., on a scale of 1 to 10).
+Summary:
+
+Provide a concise summary of the collective posts based on the identified themes and ideas.
+Sentiment Analysis:
+
+Analyze the sentiment based primarily on the text.
+Provide reasoning for the sentiment, considering the tone, language, and context.
+Assign a sentiment score as a secondary measure (e.g., on a scale of 1 to 10).
+Room for Improvement:
+
+Suggest areas for improvement in content, tone, or messaging.
+Output Format:
+
+Summary: [Provide a brief summary of the overall content]
+Sentiment: [Positive/Negative/Neutral] – Score: [1-10] – Reasoning: [Explain why this sentiment was determined]
+Room for Improvement: [Suggestions for improving the content or tone]
+Example Interaction:
+User: “Analyze these posts about the new product launch.”
+Agent:
+
+Summary: The posts generally discuss the new product features with a mix of excitement and some concerns about pricing.
+Sentiment: Positive – Score: 7/10 – Reasoning: The majority of the posts express excitement and satisfaction with the new features, though some concerns about pricing slightly dampen the overall enthusiasm.
+Room for Improvement: Consider addressing pricing concerns more directly in future communications to balance the overall positive sentiment.
+
+Remember, the goal is to provide a clear and actionable analysis that helps the user improve their content strategy.
+"""
+
+
+
+
+sentiment_example = """
+John Doe
+Ohio
+
+Rated 3 out of 5 stars.
+01/15/2024
+
+Keeps flooding the fire box when I activate smoke boost.
+
+Alex Smith
+Texas
+
+Rated 4 out of 5 stars.
+01/08/2024
+
+Had to have it exchanged. Weber sent me a lemon! Customer support is the only quality thing about Weber these days.
+
+Sam Brown
+New York
+
+Rated 5 out of 5 stars.
+01/08/2024
+
+Added another technique to the cooking arsenal. Weber quality abounds, super straightforward to use, probes work great, and the app does as well except for occasional updates, but that's tech. Big sous vide cook, and I use it for the reverse sear. Works great with a little smoke.
+
+Chris Taylor
+Oregon
+
+Rated 1 out of 5 stars.
+01/07/2024
+
+Was amazing for about a week. Then the power failed completely. Now the grill will not turn on and blows a fuse every time I try to start it.
+
+Tom Brown
+Nebraska
+
+Rated 5 out of 5 stars.
+12/24/2023
+
+Works very well. Held the temperature in 20 degrees and 20 mph wind. Very pleased as others have not been able to do so.
+
+Curtis Reed
+Florida
+
+Rated 5 out of 5 stars.
+05/18/2023
+
+The grill has been working flawlessly and produces great-tasting food. I've done everything from a 14-hour low and slow smoke of a brisket, beef ribs, grilled fish, seafood, steaks, Tri-Tip, etc. I am very happy with the grill and am impressed with the smoke flavor for low and slow cooks.
+
+Reggie King
+Texas
+
+Rated 1 out of 5 stars.
+05/12/2023
+
+I believe this could be an excellent product. However, I purchased my Weber SmokeFire EPX6 Grill about a month ago. The Glowplug will not align properly with the Pellet Grate to ignite the Wood Pellets. This Weber Grill has not functioned at all since it was delivered about a month ago.
+
+Glen Barton
+Tennessee
+
+Rated 4 out of 5 stars.
+05/12/2023
+
+Besides one minor issue, the smoker has worked great. I did a nearly 10-hour shoulder that turned out great! I have reverse-seared some ribeye steaks that were crowd-pleasers. My one issue is that my wired temperature probe will suddenly say it is disconnected, and I have to unplug it and plug it back in again.
+
+Ken Williams
+California
+
+Rated 1 out of 5 stars.
+04/16/2024
+
+Purchased in July 2023. First time owning a pellet grill and a Weber, especially one at this price level—so I was pretty excited. I got a nice cover for it and some weatherproof bins for the pellets. It worked great for the first five months, then started to have some heating issues. The fire would go out in the middle of grilling, and I had to do a shutdown and try again. This happened several times—then the unit experienced some short and would not even turn on. I reached out to Weber support and supplied my receipt as they asked. We went back and forth for weeks as they asked me to send pictures of different parts and asked me stupid questions like "What error code are you seeing?" after I explained I am getting no power on. Then they asked me to become a grill tech and dismantle nearly every part of the grill and try to find the short. I am no tech, and they should have sent one to troubleshoot this high-end grill under warranty. Then they wanted to send me all the electrical components and have me replace all the internals myself, but one of the parts would be on backorder for who knows how long. I had enough and reached out to the store, which was shocked that they wanted me to do all of that myself. They told me to bring it back, and they would take better care of me. Really disappointed.
+
+Marcus Johnson
+Ontario, Canada
+
+Rated 5 out of 5 stars.
+03/19/2024
+
+It can sear, it can BBQ, it can smoke. What can’t this thing do? Great flavor.
+
+"""
+
